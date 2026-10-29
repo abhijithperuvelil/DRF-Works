@@ -54,7 +54,11 @@ class MovieDelete(APIView):
         m.delete()
         return Response({"message":"deleted"},status=status.HTTP_200_OK)
 
+class SearchApiView(APIView):
+    def get(self,request):
+        #fetches the keyword from the query params
+        data=request.query_params.get('search')
+        print(data)
 
 
-
-
+        return Response({"msg":"success"})

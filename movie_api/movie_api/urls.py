@@ -21,10 +21,11 @@ from rest_framework.views import APIView
 from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('create',views.MovieCreate.as_view()),
-    path('list',views.MovieList.as_view()),
-    path('detail/<int:i>/',views.MovieDetial.as_view()),
-    path('update/<int:i>/',views.MovieUpdate.as_view()),
-    path('patch/<int:i>/',views.MoviePatch.as_view()),
-    path('delete/<int:i>/',views.MovieDelete.as_view()),
+    # path('create',views.MovieCreate.as_view()),
+    # path('list',views.MovieList.as_view()),
+    # path('detail/<int:i>/',views.MovieDetial.as_view()),
+    # path('update/<int:i>/',views.MovieUpdate.as_view()),
+    # path('patch/<int:i>/',views.MoviePatch.as_view()),
+    # path('delete/<int:i>/',views.MovieDelete.as_view()),
+    path('',views.SearchApiView.as_view()),
 ]
