@@ -2,6 +2,7 @@ from typing import Any
 
 from rest_framework import serializers
 from app.models import  Employee
+from django.contrib.auth.models import User
 class EmployeeSerializer(serializers.Serializer):
     id=serializers.IntegerField(read_only=True)
     mode_choice=(('Male','Male'),('Female','Female'))
@@ -14,14 +15,22 @@ class EmployeeSerializer(serializers.Serializer):
     salary = serializers.IntegerField()
     designation = serializers.CharField(max_length=30)
     image=serializers.ImageField()
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['username','password','email','first_name','last_name']
+
     #create is called after validation and before saving
-    def validate(self,data):
-        if data['age']<=0:
-            raise serializers.ValidationError("Age Should Be Positive")
-        return data
+    # def validate(self,data):
+    #     if data['age']<=0:
+    #         raise serializers.ValidationError("Age Should Be Positive")
+    #     return data
+    # def create(self,validated_data):
+    #     e=Employee.objects.create(**validated_data)
+    #     return e
     def create(self,validated_data):
-        e=Employee.objects.create(**validated_data)
-        return e
+        u=User.objects.create_user(**validated_data)
+        return u
     def update(self,instance,validated_data):
         instance.empid=validated_data.get('empid')
         instance.name=validated_data.get('name')

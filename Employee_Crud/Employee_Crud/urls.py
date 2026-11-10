@@ -22,9 +22,11 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('list',views.Employee_List.as_view()),
-    path('create',views.Employee_Create.as_view()),
-    path('detail/<int:i>/',views.Employee_Detail.as_view()),
-    path('delete/<int:i>/',views.Employee_Delete.as_view()),
-    path('update/<int:i>/',views.Employee_Update.as_view()),
-    path('patch/<int:i>/',views.Employee_Partial.as_view()),
+    # path('create',views.Employee_Create.as_view()),
+    # path('detail/<int:i>/',views.Employee_Detail.as_view()),
+    # path('delete/<int:i>/',views.Employee_Delete.as_view()),
+    # path('update/<int:i>/',views.Employee_Update.as_view()),
+    # path('patch/<int:i>/',views.Employee_Partial.as_view()),
+    path('search',views.SearchApi.as_view()),
+    path('register',views.Register.as_view()),
 ]

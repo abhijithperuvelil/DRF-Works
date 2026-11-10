@@ -6,6 +6,11 @@
       <sourceFolder url="file://$MODULE_DIR$/StudentApi" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/movie_api" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/movie_api_generic" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/careconnect" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Employee_Api_Mysql" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/movie_api_customuser" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/demopro" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Recipe" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
     <orderEntry type="jdk" jdkName="~\PycharmProjects\Drf Works\.venv" jdkType="Python SDK" />

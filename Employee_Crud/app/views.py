@@ -1,11 +1,12 @@
 from django.db.migrations import serializer
 from django.shortcuts import  get_object_or_404
+from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from app.models import Employee
 # Create your views here.
 from rest_framework.views import APIView
-
-from app.serializers import EmployeeSerializer
+from django.db.models import Q
+from app.serializers import EmployeeSerializer, UserSerializer
 
 
 class Employee_List(APIView):
@@ -73,3 +74,29 @@ class Employee_Delete(APIView):
         e.delete()
         return Response({"message":"deleted"})
 
+# class SearchApi(APIView):
+#     def get(self,request):
+#         data=request.query_params.get('search')
+#         e=Employee.objects.filter(Q(name__icontains=data)|
+#                                   Q(place__icontains=data)|
+#                                   Q(gender__icontains=data) |
+#                                   Q(designation__icontains=data))
+#         serializer_instance=EmployeeSerializer(e,many=True)
+#         return Response(serializer_instance.data)
+from rest_framework import generics
+class SearchApi(APIView):
+        queryset=Employee.objects.all()
+        serializer=EmployeeSerializer
+        filter_backends=[SearchFilter]
+        search_fields=['title','director','language','year']
+class Register(APIView):
+    def post(self,request):
+        #validation+conversion native to model object
+        serializer_instance=UserSerializer(data=request.data)
+        #check whether the data coming from client is valid if valid it will save to table
+        if serializer_instance.is_valid():
+            serializer_instance.save()
+            return Response(serializer_instance.data)#sends created object as responce
+        #if not valid return the errors
+        else:
+            return Response(serializer_instance.errors)
